@@ -1,0 +1,26 @@
+1. 
+The original design didnt respect SOLID patterns as it had everything in one single script
+(from counting how many coins the player has to the implementation of the save system...) It 
+also mixes the view with logic.
+2. 
+Entities: Player, IShopItem, BombItem, ShieldItem, DoubleCoinsItem
+Use cases: ISaveSystem, Shop Logic, ShopNotification 
+Presenter: Shop Presenter
+External interfaces: ShopBootstrap, ShopView, ShopDebug, ShopVFX, ShopItemSlotView, 
+PlayerPrefsSaveSystem
+3.
+ISaveSystem: Interface to implement different types of save system easily (playerprefs, json...)
+Shop Logic: Handles the logic of buying and checking if the buy is succesful
+ShopNotification: DTO that has information about the outcome of a buy request.
+4.
+The persistence is abstracted using an interface in all domain layers which allows us to 
+use any save system we want by setting it in the bootstrap.
+5.
+It can be tested without unity as all the logic is separated from unity itself so by handling 
+the bootstrap a bit differently than we would in unity we are able to run it perfectly fine.
+6.
+My solution is better because it respects the SOLID patterns by separating responsibilities.
+Also as my solution uses clean architecture it has one centralized entry point and the logic 
+is completely detached from unity so we could easily port it to other projects or engines.
+
+I also added tests so if we ever add new features we could check if the old features break.
