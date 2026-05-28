@@ -3,10 +3,32 @@ The original design didnt respect SOLID patterns as it had everything in one sin
 (from counting how many coins the player has to the implementation of the save system...) It 
 also mixes the view with logic.
 2. 
-Entities: Player, IShopItem, BombItem, ShieldItem, DoubleCoinsItem
-Use cases: ISaveSystem, Shop Logic, ShopNotification 
-Presenter: Shop Presenter
-External interfaces: ShopBootstrap, ShopView, ShopDebug, ShopVFX, ShopItemSlotView, 
+Entities:
+
+Player: Holds the player item uses and has helper functions to level up, add coins and save the player
+ShopItem: Base class for the items 
+BombItem: bomb item
+ShieldItem: shield item
+DoubleCoinsItem: double coin item
+
+Use cases:
+
+ISaveSystem: Interface for the save system
+Shop Logic: Holds the logic for the buy action and returns a shop notification
+ShopNotification: Logs the result of the buy action
+
+Presenter:
+
+Shop Presenter: Links the external interface with the inner layers
+
+External interfaces:
+
+ShopBootstrap: initializes the app, also holds the config info for the items in serialized fields although you are could initialize them with a config file too
+ShopView: Handles the view of the shop
+ShopDebug: Handles the debug buttons for easy test
+ShopVFX: Handles the audio and the feedback text message
+ShopItemSlotView: Handles the item slot that holds the item and shows its information
+
 PlayerPrefsSaveSystem
 3.
 ISaveSystem: Interface to implement different types of save system easily (playerprefs, json...)
